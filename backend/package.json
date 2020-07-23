@@ -1,0 +1,26 @@
+{
+  "name": "minecraft-house-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node createBlocksCommand.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^26.0.5",
+    "minecraft-data": "^2.62.1",
+    "node-levenshtein": "^2.0.13",
+    "ramda": "^0.27.0",
+    "website-scraper": "^4.2.2"
+  },
+  "env": {
+    "jest": true
+  },
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
+}
