@@ -26,7 +26,11 @@ const App = () => {
       const minecraftFunction = await minecraftUtils.createFunctionFromUrl(url);
       await minecraftUtils.loadMinecraftFunctionToWorldDatapack(worldName, minecraftFunction);
     } catch (e) {
-      showErrorMessage('Error while loading function to datapack', e.message)
+      if (url) {
+        showErrorMessage('Error while loading function to datapack', e.message)
+      } else {
+        showErrorMessage('Empty URL', "")
+      }
       setErrorURL(true)
     }
     setIsLoading(false);

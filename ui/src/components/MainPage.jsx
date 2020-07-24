@@ -7,10 +7,11 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 import menuBackground from '../assets/img/menu-background.jpg';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import 'particles.js'
 import '../assets/css/App.css'
+import { useMediaQuery } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   menuContainer: {
@@ -18,11 +19,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
 
     marginTop: '10em',
-    height: '35em',
+    height: '30em',
+    paddingLeft: '6em',
+    paddingRight: '6em',
 
     borderRadius: 5,
     boxShadow: theme.shadows[8],
     zIndex: 402,
+
+    [theme.breakpoints.down("xs")]: {
+      height: '25em'
+    }
   },
 
   inputText: {
@@ -62,11 +69,14 @@ function MainPage({ onChangeUrl, onChangeWorldName, valueUrl, valueWorldName, on
     setPreviousIsLoading(isLoading)
   }, [isLoading])
 
+  const theme = useTheme();
+  const matchMD = useMediaQuery(theme.breakpoints.down('md'))
+
   return <>
     <div id='particle-container' />
-    <Container maxWidth='md' className={classes.menuContainer}>
+    <Container maxWidth={matchMD? 'sm': 'md'} className={classes.menuContainer}>
       <Grid container direction='column' spacing={3} alignItems='center' justify='center'
-            style={{ height: '100%', maxWidth: '40em', margin: 'auto' }}>
+            style={{ height: '100%', margin: 'auto' }}>
         <Grid container item>
           <Grid container direction='column'>
             <Grid item>
@@ -106,14 +116,18 @@ function MainPage({ onChangeUrl, onChangeWorldName, valueUrl, valueWorldName, on
             Make house
           </button>
         </Grid>
-        <Grid item>
-          {isLoading &&
-          <CircularProgress color='secondary' />}
-        </Grid>
-        <Grid container item>
-          {succeed && !isLoading &&
-          <Alert severity="success" style={{ width: '91%' }}>Finished successfully</Alert>}
-        </Grid>
+        {
+          isLoading &&
+          <Grid item>
+            <CircularProgress color='secondary' />
+          </Grid>
+        }
+        {
+          succeed && !isLoading &&
+          <Grid container item>
+            <Alert severity="success" style={{ width: '91%' }}>Finished successfully</Alert>
+          </Grid>
+        }
       </Grid>
     </Container>
   </>
