@@ -15,6 +15,7 @@ const getBlockDirection = blockName => {
   return result ? result[0].toLowerCase() : '';
 };
 
+
 const hasFacingProperty = pipe(
   prop(__, mcData.blocksByName),
   prop('states'),

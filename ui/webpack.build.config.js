@@ -56,5 +56,12 @@ module.exports = {
     children: false,
     chunks: false,
     modules: false
+  },
+  externals: {
+    minecraftFunctions: 'commonjs2 minecraft-house-generator'
   }
+  // node: {
+  //   __dirname: true
+  // },
+  // mode: "none",
 }

@@ -1,7 +1,7 @@
 const particleConfig = {
   "particles": {
     "number": {
-      "value": 50,
+      "value": 100,
       "density": {
         "enable": true,
         "value_area": 800
@@ -66,7 +66,7 @@ const particleConfig = {
     "detect_on": "canvas",
     "events": {
       "onhover": {
-        "enable": false,
+        "enable": true,
         "mode": "repulse"
       },
       "onclick": {

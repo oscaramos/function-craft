@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import MuiAlert from '@material-ui/lab/Alert';
 
 import menuBackground from '../assets/img/menu-background.jpg';
 
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
 
     marginTop: '10em',
-    height: '20em',
+    height: '35em',
 
     borderRadius: 5,
     boxShadow: theme.shadows[8],
@@ -27,31 +29,45 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     backgroundColor: 'black',
     fontFamily: 'minecraft, serif',
-    fontSize: '1.25rem',
+    fontSize: '1.50rem',
     border: '2px solid',
     borderColor: 'rgb(160, 160, 160)',
 
-    width: 300,
-    height: 40,
+    width: '95%',
+    height: '3em',
     margin: 0,
   },
 
   label: {
     color: 'rgb(160, 160, 160)',
     fontFamily: 'minecraft, serif',
-    fontSize: '1.10rem'
+    fontSize: '1.25rem'
   }
 }))
 
-function MainPage({ onChangeUrl, onChangeWorldName, valueUrl, valueWorldName }) {
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+function MainPage({ onChangeUrl, onChangeWorldName, valueUrl, valueWorldName, onSubmit, isLoading, errorURL }) {
   const classes = useStyles();
+  const [previousIsLoading, setPreviousIsLoading] = useState(false);
+  const [succeed, setSucceed] = useState(false);
+
+  useEffect(() => {
+    const finishedTask = isLoading === false && previousIsLoading === true;
+    if (finishedTask && errorURL === false) {
+      setSucceed(true);
+    }
+    setPreviousIsLoading(isLoading)
+  }, [isLoading])
 
   return <>
     <div id='particle-container' />
-    <Container maxWidth='sm' className={classes.menuContainer}>
+    <Container maxWidth='md' className={classes.menuContainer}>
       <Grid container direction='column' spacing={3} alignItems='center' justify='center'
-            style={{ height: '100%' }}>
-        <Grid item>
+            style={{ height: '100%', maxWidth: '40em', margin: 'auto' }}>
+        <Grid container item>
           <Grid container direction='column'>
             <Grid item>
               <label className={classes.label}>URL</label>
@@ -61,11 +77,15 @@ function MainPage({ onChangeUrl, onChangeWorldName, valueUrl, valueWorldName }) 
                      value={valueUrl}
                      onChange={onChangeUrl}
                      className={classes.inputText}
+                     spellCheck={false}
+                     style={errorURL? {
+                       borderColor: 'red'
+                     }: undefined}
               />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid container item>
           <Grid container direction='column'>
             <Grid item>
               <label className={classes.label}>World Name</label>
@@ -75,14 +95,24 @@ function MainPage({ onChangeUrl, onChangeWorldName, valueUrl, valueWorldName }) 
                      value={valueWorldName}
                      onChange={onChangeWorldName}
                      className={classes.inputText}
+                     spellCheck={false}
               />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <button className='mc-button' style={{ width: 308, height: 40, margin: 0, fontSize: '1.25rem' }}>
+        <Grid container item>
+          <button className='mc-button' style={{ width: '97%', height: '3em', margin: 0, fontSize: '1.50rem' }}
+                  onClick={onSubmit}>
             Make house
           </button>
+        </Grid>
+        <Grid item>
+          {isLoading &&
+          <CircularProgress color='secondary' />}
+        </Grid>
+        <Grid container item>
+          {succeed && !isLoading &&
+          <Alert severity="success" style={{ width: '91%' }}>Finished successfully</Alert>}
         </Grid>
       </Grid>
     </Container>

@@ -1,5 +1,5 @@
 {
-  "name": "electron-react-webpack-boilerplate",
+  "name": "function-craft",
   "version": "1.12.1",
   "description": "House Maker Minecraft",
   "license": "MIT",
@@ -29,12 +29,15 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "minecraft-house-generator": "file:../backend",
     "particles.js": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
     "babel-minify-webpack-plugin": "^0.3.1",
