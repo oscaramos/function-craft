@@ -26,10 +26,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
     boxShadow: theme.shadows[8],
     zIndex: 402,
-
-    [theme.breakpoints.down("xs")]: {
-      height: '25em'
-    }
   },
 
   inputText: {
