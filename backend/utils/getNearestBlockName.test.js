@@ -1,4 +1,4 @@
-const levenshtein = require('node-levenshtein')
+const levenshtein = require('fastest-levenshtein')
 const { getNearestBlockName, removeParenthesis, getBlockDirection, hasFacingProperty} = require('./getNearestBlockName')
 
 describe('Should get the nearest block and property by block name', () => {
@@ -22,7 +22,7 @@ describe('Should get the nearest block and property by block name', () => {
   it('Should use memorization for better performance', () => {
     const levenshteinMock = jest.fn(levenshtein)
     getNearestBlockName('Jungle Leaves (No Decay)')
-    getNearestBlockName('Jungle Leaves (No Decay)', levenshteinMock)
+    getNearestBlockName('Jungle Leaves (No Decay)', levenshteinMock.distance)
     expect(levenshteinMock).not.toBeCalled()
   });
 });

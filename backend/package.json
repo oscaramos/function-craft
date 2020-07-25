@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/jest": "^26.0.5",
+    "@types/jest": "^26.0.7",
+    "fastest-levenshtein": "^1.0.9",
     "minecraft-data": "^2.62.1",
-    "node-levenshtein": "^2.0.13",
     "ramda": "^0.27.0",
     "website-scraper": "^4.2.2"
   },

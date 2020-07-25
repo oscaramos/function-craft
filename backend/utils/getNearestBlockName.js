@@ -1,7 +1,7 @@
 const minecraft_version = "1.15.2";
 
 const mcData = require("minecraft-data")(minecraft_version)
-const levenshtein = require('node-levenshtein')
+const levenshtein = require('fastest-levenshtein')
 const { __, includes, pipe, pluck, prop } = require('ramda')
 
 const minecraft_namespace = 'minecraft:';
@@ -59,7 +59,7 @@ const getProperty = (blockDirection, nearestBlockName) => {
   }
 };
 
-const getNearestBlockName = (blockName, compareStringAlgorithm = levenshtein) => {
+const getNearestBlockName = (blockName, compareStringAlgorithm = levenshtein.distance) => {
   const blockDirection = getBlockDirection(blockName);
   const memoBlockName = removeParenthesis(blockName) + blockDirection
 
