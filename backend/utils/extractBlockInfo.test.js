@@ -4,7 +4,7 @@ const {
 } = require('./index')
 
 it('Should extract block information related to the rendering object', () => {
-  const renderObject = getObjectFromOldJSFile('./TestingData/myRenderObject_388.js');
+  const renderObject = getObjectFromOldJSFile('./datatest/myRenderObject_388.js');
   const blockInfos = extractBlockInfo(renderObject)
   console.log(blockInfos);
   expect(blockInfos).toEqual(expect.arrayContaining([

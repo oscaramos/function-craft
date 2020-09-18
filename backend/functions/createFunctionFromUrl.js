@@ -1,23 +1,17 @@
 const fs = require('fs')
+const path = require('path')
+
 const createMinecraftFunction = require('./createMinecraftFunction')
 const { downloadFromUrl, getDirectoryHouse } = require('../utils')
 
-const getInputFilename = directoryName => {
-  const renderObjectName = fs.readdirSync(`./${directoryName}/js/`)
-    .filter(
-      filename => filename.startsWith('myRenderObject_')
-    )[0];
-
-  return `./${directoryName}/js/${renderObjectName}`
-};
-
 const createFunctionFromUrl = async (url) => {
-  const directoryName = getDirectoryHouse(url)
+  await downloadFromUrl(url)
 
-  if(!fs.existsSync(`./${directoryName}`))
-    await downloadFromUrl(url)
+  const directoryHouse = getDirectoryHouse(url)
+  const renderObjectName = fs.readdirSync(path.join('.', directoryHouse, 'js'))
+    .filter(filename => filename.startsWith('myRenderObject_'))[0];
+  const inputFilename = path.join('.', directoryHouse, 'js', renderObjectName)
 
-  const inputFilename = getInputFilename(directoryName);
   return createMinecraftFunction(inputFilename)
 };
 
