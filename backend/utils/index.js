@@ -1,7 +1,7 @@
 const getObjectFromOldJSFile = require('./getObjectFromOldJSFile')
 const extractBlockInfo = require('./extractBlockInfo')
 const createBlocksCommand = require('./createBlocksCommand')
-const downloadFromUrl = require('./downloadFromUrl')
+const downloadFromUrl = require('./downloadHouse')
 
 module.exports = {
   getObjectFromOldJSFile,
