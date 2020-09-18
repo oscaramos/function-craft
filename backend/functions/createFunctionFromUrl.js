@@ -1,8 +1,6 @@
 const fs = require('fs')
 const createMinecraftFunction = require('./createMinecraftFunction')
-const { downloadFromUrl } = require('../utils')
-
-const getDirectoryName = url => `./${url.slice(url.lastIndexOf('/') + 1)}`;
+const { downloadFromUrl, getDirectoryHouse } = require('../utils')
 
 const getInputFilename = directoryName => {
   const renderObjectName = fs.readdirSync(`./${directoryName}/js/`)
@@ -14,7 +12,7 @@ const getInputFilename = directoryName => {
 };
 
 const createFunctionFromUrl = async (url) => {
-  const directoryName = getDirectoryName(url)
+  const directoryName = getDirectoryHouse(url)
 
   if(!fs.existsSync(`./${directoryName}`))
     await downloadFromUrl(url)

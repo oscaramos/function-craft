@@ -11,9 +11,11 @@ describe('Given an url from grabcraft.com to a house should download the house',
     if (fs.existsSync(directory)) {
       fs.rmdirSync(directory, { recursive: true })
     }
+    expect.assertions(1)
     return downloadFromUrl(url)
       .then(results => {
         console.log(results);
+        expect(results).toBeDefined()
       })
   }, 20000);
 });
