@@ -2,10 +2,10 @@ const fs = require('fs')
 const path = require('path')
 
 const createMinecraftFunction = require('./createMinecraftFunction')
-const { downloadFromUrl, getDirectoryHouse } = require('../utils')
+const { downloadHouse, getDirectoryHouse } = require('../utils')
 
 const createFunctionFromUrl = async (url) => {
-  await downloadFromUrl(url)
+  await downloadHouse(url)
 
   const directoryHouse = getDirectoryHouse(url)
   const renderObjectName = fs.readdirSync(path.join('.', directoryHouse, 'js'))

@@ -5,9 +5,9 @@ const downloadHouse = require('./downloadHouse')
 const path = require('path')
 
 module.exports = {
-  getObjectFromOldJSFile: getRenderObject,
+  getRenderObject,
   extractBlockInfo,
   createBlocksCommand,
-  downloadFromUrl: downloadHouse,
+  downloadHouse,
   getDirectoryHouse: url => path.join('.', 'houses', url.slice(url.lastIndexOf('/') + 1))
 }

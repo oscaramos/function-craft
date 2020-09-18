@@ -1,11 +1,11 @@
 const {
-  getObjectFromOldJSFile,
+  getRenderObject,
   extractBlockInfo,
   createBlocksCommand
 } = require('../utils')
 
 const createMinecraftFunction = (inputFilename) => {
-  const renderObj = getObjectFromOldJSFile(inputFilename);
+  const renderObj = getRenderObject(inputFilename);
   const blockDataList = extractBlockInfo(renderObj);
   return createBlocksCommand(blockDataList)
 };
