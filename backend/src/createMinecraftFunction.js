@@ -4,7 +4,7 @@ const path = require('path')
 const getRenderObject = require('./createMinecraftFunctions/getRenderObject')
 const extractHouseBlocks = require('./createMinecraftFunctions/extractHouseBlocks')
 const createBlocksCommand = require('./createMinecraftFunctions/createBlocksCommand')
-const downloadHouse = require('./createFunctionFromUrl/downloadHouse')
+const downloadHouse = require('./createMinecraftFunctions/downloadHouse')
 
 const { getDirectoryHouse } = require('./utils')
 
