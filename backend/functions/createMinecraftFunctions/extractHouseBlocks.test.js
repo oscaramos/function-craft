@@ -1,10 +1,6 @@
-const {
-  getRenderObject,
-  extractHouseBlocks
-} = require('./index')
-
 const path = require('path')
-
+const getRenderObject = require('./getRenderObject')
+const extractHouseBlocks = require('./extractHouseBlocks')
 
 it('Should extract block information related to the rendering object', () => {
   const renderObject = getRenderObject(path.join('.', 'datatest', 'myRenderObject_388.js'));

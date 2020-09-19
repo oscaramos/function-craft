@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 const createMinecraftFunction = require('./createMinecraftFunction')
-const { downloadHouse, getDirectoryHouse } = require('../utils')
+const { downloadHouse, getDirectoryHouse } = require('./utils')
 
 const createFunctionFromUrl = async (url) => {
   await downloadHouse(url)

@@ -1,8 +1,9 @@
+const getRenderObject = require('./createMinecraftFunctions/getRenderObject')
+const extractHouseBlocks = require('./createMinecraftFunctions/extractHouseBlocks')
+
 const {
-  getRenderObject,
-  extractHouseBlocks,
   createBlocksCommand
-} = require('../utils')
+} = require('./utils')
 
 const createMinecraftFunction = path => {
   const renderObj = getRenderObject(path);
