@@ -1,21 +1,22 @@
-const downloadFromUrl = require('./downloadHouse')
+const downloadHouse = require('./downloadHouse')
 const fs = require('fs')
-const path = require('path')
+const { getDirectoryHouse } = require('../utils')
 
 describe('Given an url from grabcraft.com to a house should download the house', () => {
-  it('With a big house', () => {
+  it('Download', async () => {
     const url = 'https://www.grabcraft.com/minecraft/warhammer-40k-armory'
-    const houseName = url.slice(url.lastIndexOf('/') + 1)
-    const directory = path.join('.', 'houses', houseName)
+    const directoryHouse = getDirectoryHouse(url)
     // Removes the folder before downloading
-    if (fs.existsSync(directory)) {
-      fs.rmdirSync(directory, { recursive: true })
+    if (fs.existsSync(directoryHouse)) {
+      fs.rmdirSync(directoryHouse, { recursive: true })
     }
-    expect.assertions(1)
-    return downloadFromUrl(url)
-      .then(results => {
-        console.log(results);
-        expect(results).toBeDefined()
-      })
+    await downloadHouse(url)
+    expect(fs.existsSync(directoryHouse)).toBe(true)
   }, 20000);
+
+  it('Dont download because it was already downloaded', async () => {
+    const url = 'https://www.grabcraft.com/minecraft/warhammer-40k-armory'
+    await downloadHouse(url)
+    expect(fs.existsSync(getDirectoryHouse(url))).toBe(true)
+  })
 });
