@@ -1,6 +1,6 @@
-const createFunctionFromUrl = require('./scripts/createFunctionFromUrl')
-const createMinecraftFunction = require('./scripts/createMinecraftFunction')
-const loadMinecraftFunctionToWorldDatapack = require('./scripts/loadMinecraftFunctionToWorldDatapack')
+const createFunctionFromUrl = require('./src/createFunctionFromUrl')
+const createMinecraftFunction = require('./src/createMinecraftFunction')
+const loadMinecraftFunctionToWorldDatapack = require('./src/loadMinecraftFunctionToWorldDatapack')
 
 module.exports = {
   createFunctionFromUrl,
