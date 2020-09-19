@@ -1,7 +1,7 @@
 const createMinecraftFunction = require('./src/createMinecraftFunction')
-const loadMinecraftFunctionToWorldDatapack = require('./src/loadMinecraftFunctionToWorldDatapack')
+const saveFunctionInsideDatapacks = require('./src/saveFunctionInsideDatapacks')
 
 module.exports = {
   createMinecraftFunction,
-  loadMinecraftFunctionToWorldDatapack,
+  saveFunctionInsideDatapacks,
 }
