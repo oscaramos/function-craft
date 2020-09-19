@@ -1,13 +1,13 @@
 const {
   getRenderObject,
-  extractBlockInfo,
+  extractHouseBlocks,
   createBlocksCommand
 } = require('../utils')
 
-const createMinecraftFunction = (inputFilename) => {
-  const renderObj = getRenderObject(inputFilename);
-  const blockDataList = extractBlockInfo(renderObj);
-  return createBlocksCommand(blockDataList)
+const createMinecraftFunction = path => {
+  const renderObj = getRenderObject(path);
+  const houseBlocks = extractHouseBlocks(renderObj);
+  return createBlocksCommand(houseBlocks)
 };
 
 module.exports = createMinecraftFunction

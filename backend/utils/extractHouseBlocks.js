@@ -1,6 +1,6 @@
 const { compose, applySpec, map, prop } = require('ramda');
 
-const extractBlockInfo = (renderObject) => {
+const extractHouseBlocks = (renderObject) => {
   // Returns an array with the objects
   let acum = []
   map(
@@ -23,4 +23,4 @@ const extractBlockInfo = (renderObject) => {
   )(acum)
 }
 
-module.exports = extractBlockInfo;
+module.exports = extractHouseBlocks;
