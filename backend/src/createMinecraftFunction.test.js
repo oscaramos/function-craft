@@ -1,12 +1,13 @@
 const createMinecraftFunction = require('./createMinecraftFunction')
 
 describe('create a minecraft function from render object file, and check it with a snapshot', () => {
-  it('Object 388', async () => {
-    const minecraftFunction = await createMinecraftFunction('https://www.grabcraft.com/minecraft/ww2-queen-elizabeth-class-battleship/warships')
-    expect(minecraftFunction).toMatchSnapshot()
-  })
+  it('House 1', async () => {
+    expect(await createMinecraftFunction('https://www.grabcraft.com/minecraft/ww2-queen-elizabeth-class-battleship/warships'))
+      .toMatchSnapshot()
+  }, 30000)
 
-  it('Object 397 from ', () => {
-    expect(createMinecraftFunction('https://www.grabcraft.com/minecraft/quartz-house-8')).toMatchSnapshot()
-  })
+  it('House 2', async () => {
+    expect(await createMinecraftFunction('https://www.grabcraft.com/minecraft/quartz-house-8'))
+      .toMatchSnapshot()
+  }, 30000)
 });

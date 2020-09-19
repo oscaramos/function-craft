@@ -14,9 +14,9 @@ const createMinecraftFunction = async (url) => {
 
   // Get the render object path for create the minecraft function
   const directoryHouse = getDirectoryHouse(url)
-  const renderObjectName = fs.readdirSync(path.join('.', directoryHouse, 'js'))
-    .filter(filename => filename.startsWith('myRenderObject_'))[0];
-  const renderObjectPath = path.join('.', directoryHouse, 'js', renderObjectName)
+  const renderObjects = fs.readdirSync(path.join('.', directoryHouse, 'js'))
+    .filter(filename => filename.startsWith('myRenderObject_'));
+  const renderObjectPath = path.join('.', directoryHouse, 'js', renderObjects[0])
 
   // Render minecraft function
   const renderObj = getRenderObject(renderObjectPath);
