@@ -13,6 +13,17 @@ const { getDirectoryHouse } = require('./utils')
  *
  * @param {string} url - Format https://www.grabcraft.com/minecraft/my-category/my-house
  * @returns {Promise<string>} - The downloaded house converted to an group of commands that creates the house
+ *
+ * @example
+ *   const minecraftBlocks = await createMinecraftFunction('https://www.grabcraft.com/minecraft/medieval-rural-house-2/medieval-houses')
+ *   console.log(minecraftBlocks)
+ *   >>> setblock ~1 ~ ~1 minecraft:grass replace
+ *   >>> setblock ~1 ~ ~2 minecraft:grass replace
+ *   >>> setblock ~1 ~ ~3 minecraft:grass replace
+ *   ...
+ *   >>> setblock ~5 ~ ~10 minecraft:spruce_planks replace
+ *   >>> setblock ~5 ~ ~11 minecraft:spruce_planks replace
+ *   ...
  */
 const createMinecraftFunction = async (url) => {
   // Download the house for getting their render object
