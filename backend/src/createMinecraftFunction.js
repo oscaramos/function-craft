@@ -1,13 +1,19 @@
 const fs = require('fs')
 const path = require('path')
 
+const downloadHouse = require('./createMinecraftFunctions/downloadHouse')
 const getRenderObject = require('./createMinecraftFunctions/getRenderObject')
 const extractHouseBlocks = require('./createMinecraftFunctions/extractHouseBlocks')
 const createBlocksCommand = require('./createMinecraftFunctions/createBlocksCommand')
-const downloadHouse = require('./createMinecraftFunctions/downloadHouse')
 
 const { getDirectoryHouse } = require('./utils')
 
+/**
+ * Create an minecraft function from an url from grabcraft.com.
+ *
+ * @param {string} url - Format https://www.grabcraft.com/minecraft/my-category/my-house
+ * @returns {Promise<string>} - The downloaded house converted to an group of commands that creates the house
+ */
 const createMinecraftFunction = async (url) => {
   // Download the house for getting their render object
   await downloadHouse(url)

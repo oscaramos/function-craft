@@ -1,6 +1,6 @@
 const createMinecraftFunction = require('./createMinecraftFunction')
 
-describe('create a minecraft function from render object file, and check it with a snapshot', () => {
+describe('create a minecraft function from render object file', () => {
   it('House 1', async () => {
     expect(await createMinecraftFunction('https://www.grabcraft.com/minecraft/ww2-queen-elizabeth-class-battleship/warships'))
       .toMatchSnapshot()

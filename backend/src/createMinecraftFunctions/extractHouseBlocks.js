@@ -1,5 +1,10 @@
 const { compose, applySpec, map, prop } = require('ramda');
 
+/**
+ * Extract house blocks from the rendering object
+ * @param {any} renderObject
+ * @returns {any[]}
+ */
 const extractHouseBlocks = (renderObject) => {
   // Returns an array with the objects
   let acum = []

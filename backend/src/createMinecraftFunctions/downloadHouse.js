@@ -3,7 +3,11 @@ const fs = require('fs')
 const scrape = require('website-scraper');
 const { getDirectoryHouse } = require('../utils')
 
-// Scrape the given url into the directory given
+/**
+ * Scrape the given url into the directory given
+ * @param {string} url
+ * @returns {Promise<void>}
+ */
 const downloadHouse = async (url) => {
   let directoryHouse = getDirectoryHouse(url)
   if (!fs.existsSync(directoryHouse)) {
