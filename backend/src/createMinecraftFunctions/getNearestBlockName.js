@@ -93,7 +93,7 @@ let memo = {}
  * Get the nearest block name from a block name as input
  * @param {string} blockName
  * @param {Object} [options]
- * @param {string} options.mc_version - mc_version is minecraft
+ * @param {string} options.mc_version - Minecraft version
  * @returns {string} - The nearest block name
  */
 const getNearestBlockName = (blockName, options) => {
