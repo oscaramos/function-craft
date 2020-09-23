@@ -1,44 +1,70 @@
-const minecraft_version = "1.15.2";
-
-const mcData = require("minecraft-data")(minecraft_version)
+let mcData = require("minecraft-data")
 const levenshtein = require('fastest-levenshtein')
-const { __, includes, pipe, pluck, prop } = require('ramda')
+const { __, includes, pipe, pluck, prop, ifElse, has, always } = require('ramda')
 
+const default_minecraft_version = "1.15.2";
 const minecraft_namespace = 'minecraft:';
 
+/**
+ * Remove the parenthesis of a block name
+ * @param {string} blockName
+ * @returns {string}
+ */
 const removeParenthesis = blockName => {
   return blockName.replace(/\([^)]*\)/g, '').trim();
 };
 
+/**
+ * Recognize the direction of a block name
+ * @param {string} blockName
+ * @returns {string}
+ */
 const getBlockDirection = blockName => {
   const result = blockName.match(/north|south|east|west/i)
   return result ? result[0].toLowerCase() : '';
 };
 
+/**
+ * Recognize if a minecraft block has the facing property
+ * @param {string} blockName
+ * @param {string} mcVersion
+ * @returns {boolean}
+ */
+const hasFacingProperty = (blockName, mcVersion = default_minecraft_version) => {
+  return pipe(
+    prop(__, mcData(mcVersion).blocksByName),
+    ifElse(
+      has('states'),
+      pipe(
+        prop('states'),
+        pluck('name'),
+        includes('facing'),
+      ),
+      always(false)
+    ),
+  )(blockName)
+}
 
-const hasFacingProperty = pipe(
-  prop(__, mcData.blocksByName),
-  prop('states'),
-  pluck('name'),
-  includes('facing'),
-)
-
-const getNearestBySimilarityFunction = (blockName, compareStringAlgorithm) => {
+/**
+ * Get the nearest block name using an similarity function(levenshtein distance)
+ * @param {string} blockName - Minecraft block name(without parenthesis)
+ * @param {string} mcVersion - Minecraft version
+ * @returns {string}
+ */
+const getNearestUsingSimilarityFunction = (blockName, mcVersion=default_minecraft_version) => {
   let nearestBlockName = ""
   let minValue = -1
 
-  Object.values(mcData.blocksByName).map(
+  // For every minecraft block in the game
+  Object.values(mcData(mcVersion).blocksByName).map(
     blockInfo => {
-      // Try every permutation from block Name to get better results
-      // Example: blockName can be 'Gold Block', but the blockInfo.displayName can be 'Block of Gold'
+      // Also try the inverse of the block name, example: Gold Block -> Block of Gold
       const words = blockName.split(' ')
-
-      // Gold BLock -> Block of Gold
-      const inverseBlockName = (words[words.length - 1] + ' of ' + words.slice(0, words.length - 1).join(' '))
+      const inverseBlockName = (`${words[words.length - 1]} of ${words.slice(0, words.length - 1).join(' ')}`)
 
       const wordsPermutation = [blockName, inverseBlockName]
       wordsPermutation.map(permutedBlockName => {
-        const newValue = compareStringAlgorithm(permutedBlockName, blockInfo.displayName);
+        const newValue = levenshtein.distance(permutedBlockName, blockInfo.displayName);
         if (minValue === -1 || newValue < minValue) {
           nearestBlockName = blockInfo.name
           minValue = newValue
@@ -49,31 +75,49 @@ const getNearestBySimilarityFunction = (blockName, compareStringAlgorithm) => {
   return nearestBlockName;
 };
 
-const memo = {}
-
-const getProperty = (blockDirection, nearestBlockName) => {
-  if (hasFacingProperty(nearestBlockName) && blockDirection) {
-    return `[facing=${blockDirection}]`;
-  } else {
-    return "";
-  }
+/**
+ * Get the facing direction of a block if it exists
+ * @param {string} blockDirection
+ * @param {string} nearestBlockName
+ * @param {string} mcVersion - Minecraft version
+ * @returns {string}
+ */
+const getFacingDirection = (blockDirection, nearestBlockName, mcVersion) => {
+  return hasFacingProperty(nearestBlockName, mcVersion) && blockDirection ? `[facing=${blockDirection}]` : ''
 };
 
-const getNearestBlockName = (blockName, compareStringAlgorithm = levenshtein.distance) => {
+let prev_minecraft_version = ''
+let minecraft_version = ''
+let memo = {}
+/**
+ * Get the nearest block name from a block name as input
+ * @param {string} blockName
+ * @param {Object} [options]
+ * @param {string} options.mc_version - mc_version is minecraft
+ * @returns {string} - The nearest block name
+ */
+const getNearestBlockName = (blockName, options) => {
+  minecraft_version = options && options.mc_version != null ? options.mc_version : default_minecraft_version
+
+  if (minecraft_version !== prev_minecraft_version) {
+    // clear memorization for avoid secondary effect
+    memo = {}
+  }
+
   const blockDirection = getBlockDirection(blockName);
   const memoBlockName = removeParenthesis(blockName) + blockDirection
 
   if (!memo[memoBlockName]) {
-    const nearestBlockName = getNearestBySimilarityFunction(removeParenthesis(blockName), compareStringAlgorithm)
-    const property = getProperty(blockDirection, nearestBlockName)
-    memo[memoBlockName] = minecraft_namespace + nearestBlockName + property
+    const nearestBlockName = getNearestUsingSimilarityFunction(removeParenthesis(blockName), minecraft_version)
+    memo[memoBlockName] = minecraft_namespace + nearestBlockName + getFacingDirection(blockDirection, nearestBlockName, minecraft_version)
   }
   return memo[memoBlockName];
 };
+
 
 module.exports = {
   getNearestBlockName,
   removeParenthesis,
   getBlockDirection,
-  hasFacingProperty,
+  hasFacingProperty
 }
