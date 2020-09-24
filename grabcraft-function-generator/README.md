@@ -1,4 +1,4 @@
-# function-craft backend
+# Grabcraft function generator
 
 # Usage
 
