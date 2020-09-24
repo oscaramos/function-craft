@@ -1,6 +1,7 @@
 {
   "name": "function-craft",
   "version": "1.0.0",
+  "description": "This package only exist for deploying to heroku(an hack). DO NOT INSTALL WITH npm install BECAUSE IT IS NOT NECESSARY",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
