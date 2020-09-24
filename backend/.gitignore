@@ -1,0 +1,8 @@
+# Dependencies
+/node_modules
+
+# Minecraft houses
+/houses
+
+# Locks
+package-lock.json
