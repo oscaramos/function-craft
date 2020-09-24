@@ -3,28 +3,29 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Title</title>
+    <title>Function Craft</title>
     <!-- styles -->
     <link rel='stylesheet' href='styles.css'>
 </head>
 <body>
     <!-- Form -->
     <div id='form'>
-        <label for='url'>Grabcraft url</label>
-        <input type='text' id='url' autocomplete='off'>
+        <label for='url'>Grabcraft Url</label>
+        <input type="url" name="grabcraft-url" id="url" placeholder="https://www.grabcraft.com/" required>
 
-        <label for='mcversion'>Minecraft Version</label>
+        <label for='mcversion'>Version</label>
         <div id='mc-version-container'>
             <select name='mcversion' id='mcversion'>
             </select>
         </div>
 
-        <button id='submit'>Generate function</button>
+        <button id='submit'>Download house</button>
         <div class="loader" id='loader' hidden></div>
         <a id="download_link" download="minecraft_function.txt" href=”” hidden>_</a>
     </div>
 
     <!-- script -->
+    <script src='https://unpkg.com/arrow-js@0.1.9/dist/arrow-js-0.1.9.min.js'></script>
     <script src='script.js'></script>
 </body>
 </html>

@@ -1,7 +1,10 @@
+/* Fonts */
 @font-face {
     font-family: 'minecraft';
     src: local('minecraft'), url(./fonts/Minecraft.ttf) format('truetype');
 }
+
+/* Tags */
 
 * {
     box-sizing: border-box;
@@ -26,17 +29,9 @@ label {
     margin-bottom: 0.5rem;
 }
 
-#form {
-    width: 50em;
-    height: 30em;
-    background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55)), url("./img/menu-background.jpg");
-    background-size: cover;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-    padding: 4rem;
-}
+/* Minecraft input grabcraft url */
 
-input[type=text] {
+input[type=url] {
     color: white;
     background-color: black;
     font-family: minecraft, serif;
@@ -48,6 +43,12 @@ input[type=text] {
     height: 3em;
     outline: none;
 }
+
+input[type=url].invalid-url {
+    border: 1px solid red;
+}
+
+/* Minecraft Button */
 
 button {
     cursor: pointer;
@@ -79,6 +80,7 @@ button:active {
     box-shadow: inset -2px -4px #0004, inset 2px 2px #fff5;
 }
 
+/* Select Minecraft Version */
 
 select {
     width: 100%;
@@ -91,6 +93,18 @@ select {
     border: 2px solid rgb(160, 160, 160);
     padding: 10px;
     outline: none;
+}
+
+/* IDs */
+
+#form {
+    width: 50em;
+    height: 30em;
+    background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55)), url("./img/menu-background.jpg");
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+    padding: 4rem;
 }
 
 #url {
@@ -107,6 +121,7 @@ select {
 }
 
 /* Loader */
+
 .loader {
     border: 16px solid #f3f3f3;
     border-radius: 50%;
