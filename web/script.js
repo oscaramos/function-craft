@@ -44,7 +44,7 @@ submit.addEventListener('click', async () => {
   submit.hidden = true
   loader.hidden = false
 
-  const apiUrl = 'http://localhost:4000/?' + new URLSearchParams({
+  const apiUrl = 'https://function-craft.herokuapp.com/?' + new URLSearchParams({
     url: url.value,
     mc_version: mcVersion.value
   })
