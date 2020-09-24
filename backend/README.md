@@ -3,13 +3,16 @@
 # Usage
 
 ### createMinecraftFunction(url)
-Create an minecraft function from an url from grabcraft.com.
+Create a minecraft function from an url from grabcraft.com.
 
 #### Parameters
 
 | Param | Type | Description |
 | --- | --- | --- |
 | url | <code>string</code> | Format https://www.grabcraft.com/minecraft/my-category/my-house |
+| [options] | <code>Object</code> |  Options to config generation of blocks |
+| options.mc_version | <code>string</code> | Minecraft version, default is 1.15.2 |
+
 
 **Returns**: <code>Promise.&lt;string&gt;</code> - - The downloaded house converted to an group of commands that creates the house
 
