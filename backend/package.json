@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Backend for grabcraft function generator",
+  "description": "Backend for grabcraft function generator. on heroku",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
