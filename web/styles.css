@@ -29,7 +29,7 @@ label {
 #form {
     width: 50em;
     height: 30em;
-    background: linear-gradient(rgba(20, 26, 35,0.55), rgba(20, 26, 35, 0.55)), url("./img/menu-background.jpg");
+    background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55)), url("./img/menu-background.jpg");
     background-size: cover;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
@@ -99,4 +99,40 @@ select {
 
 #mcversion {
     margin-bottom: 1.5em;
+}
+
+#mc-version-container {
+    max-width: 200px;
+    height: 150px;
+}
+
+/* Loader */
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #09f;
+    border-bottom: 16px solid #09f;
+    width: 75px;
+    height: 75px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

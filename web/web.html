@@ -11,15 +11,17 @@
     <!-- Form -->
     <div id='form'>
         <label for='url'>Grabcraft url</label>
-        <input type='text' id='url'>
+        <input type='text' id='url' autocomplete='off'>
 
         <label for='mcversion'>Minecraft Version</label>
-        <select name='mcversion' id='mcversion'>
-            <option value='1.15.2'>1.15.2</option>
-            <option value='1.12.2'>1.12.2</option>
-        </select>
+        <div id='mc-version-container'>
+            <select name='mcversion' id='mcversion'>
+            </select>
+        </div>
 
-        <button>Generate function</button>
+        <button id='submit'>Generate function</button>
+        <div class="loader" id='loader' hidden></div>
+        <a id="download_link" download="minecraft_function.txt" href=”” hidden>_</a>
     </div>
 
     <!-- script -->
